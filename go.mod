@@ -1,4 +1,4 @@
-module github.com/rezamafakheriii/pod-identity-agent
+module github.com/rezamafakheriii/service-account-pod-identity
 
 go 1.23.0
 

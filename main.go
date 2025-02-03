@@ -10,7 +10,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.com/rezamafakheriii/pod-identity-agent/lib" // Replace with the actual import path for your library
+	"github.com/rezamafakheriii/service-account-pod-identity/lib" // Replace with the actual import path for your library
 )
 
 func main() {
