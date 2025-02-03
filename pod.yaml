@@ -23,7 +23,7 @@ spec:
       serviceAccountName: pod-identity-agent-sa
       containers:
       - name: pod-identity-agent
-        image: 275214891288.dkr.ecr.us-east-1.amazonaws.com/revotech-group/pod-identity-agent:v0.0.4
+        image: rezamafakheriii/pod-identity-agent:latest
         imagePullPolicy: Always
 
 ---
@@ -38,7 +38,7 @@ rules:
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: pod-identity-agent-sa-binding
   namespace: default
