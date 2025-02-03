@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pod-identity-agent-sa
+  namespace: default
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-identity-agent-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-identity-agent
+  template:
+    metadata:
+      labels:
+        app: pod-identity-agent
+    spec:
+      serviceAccountName: pod-identity-agent-sa
+      containers:
+      - name: pod-identity-agent
+        image: 275214891288.dkr.ecr.us-east-1.amazonaws.com/revotech-group/pod-identity-agent:v0.0.1
+        imagePullPolicy: Always
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: service-account-manager
+rules:
+  - apiGroups: [""]
+    resources: ["serviceaccounts"]
+    verbs: ["*"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-identity-agent-sa-binding
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: pod-identity-agent-sa
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: service-account-manager
+  apiGroup: rbac.authorization.k8s.io
