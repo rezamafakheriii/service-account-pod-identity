@@ -23,7 +23,7 @@ spec:
       serviceAccountName: pod-identity-agent-sa
       containers:
       - name: pod-identity-agent
-        image: 275214891288.dkr.ecr.us-east-1.amazonaws.com/revotech-group/pod-identity-agent:v1.1.2
+        image: 275214891288.dkr.ecr.us-east-1.amazonaws.com/revotech-group/pod-identity-agent:v1.1.3
         imagePullPolicy: Always
 
 ---
